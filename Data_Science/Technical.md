@@ -1,11 +1,5 @@
-# This folder will organize all DS-related programming files
-## [Solutions](https://github.com/alexeygrigorev/data-science-interviews?fbclid=IwAR3L7vS_omchABDcz07WsmpkCJ8vW9gccmhas152rqOuhZlDJiNYTDyixnc)
-
-## Following will be some questions 
-Now, let’s start with the actual questions. First, we’ll cover SQL.
-
-
 # Technical interview questions
+## [Solutions](https://github.com/alexeygrigorev/data-science-interviews?fbclid=IwAR3L7vS_omchABDcz07WsmpkCJ8vW9gccmhas152rqOuhZlDJiNYTDyixnc)
 
 <table>
    <tr>
