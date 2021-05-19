@@ -52,29 +52,29 @@ SELECT count(*) FROM Ads WHERE status = 'active';
 
 
 **2)** All active campaigns. A campaign is active if there’s at least one active ad.
-
+<!-- 
 ```sql
 SELECT DISTINCT a.campaign_id
 FROM Ads AS a
 WHERE a.status = 'active';
 ```
-
+ -->
 <br/>
 
 **3)** The number of active campaigns.
-
+<!-- 
 ```sql
 SELECT COUNT(DISTINCT a.campaign_id)
 FROM Ads AS a
 WHERE a.status = 'active';
-```
+``` -->
 
 <br/>
 
 **4)** The number of events per each ad — broken down by event type.
 
 <img src="img/sql_4_example.png" />
-
+<!-- 
 ```sql
 SELECT a.ad_id, e.event_type, count(*) as "count"
 FROM Ads AS a
@@ -82,14 +82,14 @@ FROM Ads AS a
       ON a.ad_id = e.ad_id
 GROUP BY a.ad_id, e.event_type
 ORDER BY a.ad_id, "count" DESC;
-```
+``` -->
 
 <br/>
 
 **5)** The number of events over the last week per each active ad — broken down by event type and date (most recent first).
 
 <img src="img/sql_5_example.png" />
-
+<!-- 
 ```sql
 SELECT a.ad_id, e.event_type, e.date, count(*) as "count"
 FROM Ads AS a
@@ -100,14 +100,14 @@ WHERE a.status = 'active'
 GROUP BY a.ad_id, e.event_type, e.date
 ORDER BY e.date ASC, "count" DESC;
 ```
-
+ -->
 <br/>
 
 **6)** The number of events per campaign — by event type.
 
 <img src="img/sql_6_example.png" />
 
-
+<!-- 
 ```sql
 SELECT a.campaign_id, e.event_type, count(*) as count
 FROM Ads AS a
@@ -115,14 +115,14 @@ FROM Ads AS a
     ON a.ad_id = e.ad_id
 GROUP BY a.campaign_id, e.event_type
 ORDER BY a.campaign_id, "count" DESC
-```
+``` -->
 
 <br/>
 
 **7)** The number of events over the last week per each campaign and event type — broken down by date (most recent first).
 
 <img src="img/sql_7_example.png" />
-
+<!-- 
 ```sql
 -- for Postgres
 
@@ -134,13 +134,13 @@ WHERE e.date >= DATEADD(week, -1, GETDATE())
 GROUP BY a.campaign_id, e.event_type, e.date
 ORDER BY a.campaign_id, e.date DESC, "count" DESC;
 ```
-
+ -->
 <br/>
 
 **8)** CTR (click-through rate) for each ad. CTR = number of clicks / number of impressions.
 
 <img src="img/sql_8_example.png" />
-
+<!-- 
 ```sql
 -- for Postgres
 
@@ -158,13 +158,13 @@ FROM
   ) AS impressions_clicks_table
 ORDER BY impressions_clicks_table.ad_id;
 ```
-
+ -->
 <br/>
 
 **9)** CVR (conversion rate) for each ad. CVR = number of conversions / number of clicks.
 
 <img src="img/sql_9_example.png" />
-
+<!-- 
 ```sql
 -- for Postgres
 
@@ -182,14 +182,14 @@ FROM
   ) AS conversions_clicks_table
 ORDER BY conversions_clicks_table.ad_id;
 ```
-
+ -->
 <br/>
 
 **10)** CTR and CVR for each ad broken down by day and hour (most recent first).
 
 <img src="img/sql_10_example.png" />
 
-
+<!-- 
 ```sql
 -- for Postgres
 
@@ -210,7 +210,7 @@ FROM
   GROUP BY a.ad_id, e.date, e.hour
   ) AS conversions_clicks_table
 ORDER BY conversions_clicks_table.ad_id, conversions_clicks_table.date DESC, conversions_clicks_table.hour DESC, "CTR" DESC, "CVR" DESC;
-```
+``` -->
 
 <br/>
 
@@ -218,7 +218,7 @@ ORDER BY conversions_clicks_table.ad_id, conversions_clicks_table.date DESC, con
 
 <img src="img/sql_11_example.png" />
 
-
+<!-- 
 ```sql
 -- for Postgres
 
@@ -238,7 +238,7 @@ FROM
   ) AS conversions_clicks_table
 ORDER BY conversions_clicks_table.ad_id, conversions_clicks_table.date DESC, conversions_clicks_table.source, "CTR" DESC;
 ```
-
+ -->
 <br/>
 
 
@@ -252,7 +252,7 @@ ORDER BY conversions_clicks_table.ad_id, conversions_clicks_table.date DESC, con
 * Otherwise, print the number itself
 
 Example of output: 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, Fizz Buzz, 16, 17, Fizz, 19, Buzz, Fizz, 22, 23, Fizz, Buzz, 26, Fizz, 28, 29, Fizz Buzz, 31, 32, Fizz, 34, Buzz, Fizz, ...
-
+<!-- 
 ```python
 for i in range(1, 101):
     if i % 3 == 0 and i % 5 == 0:
@@ -264,14 +264,14 @@ for i in range(1, 101):
     else:
         print(i)
 ```
-
+ -->
 <br/>
 
 **2) Factorial**. Calculate a factorial of a number
 
 * `factorial(5)` = 5! = 1 * 2 * 3 * 4 * 5 = 120
 * `factorial(10)` = 10! = 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10 = 3628800
-
+<!-- 
 ```python
 def factorial(n):
     result = 1
@@ -279,9 +279,9 @@ def factorial(n):
         result *= i
     return result
 ```
-
+ -->
 We can also write this function using recursion:
-
+<!-- 
 ```python
 def factorial(n: int):
     if n == 0 or n == 1:
@@ -289,7 +289,7 @@ def factorial(n: int):
     else:
         return n * factorial(n - 1)
 ```
-
+ -->
 
 <br/>
 
@@ -299,14 +299,14 @@ def factorial(n: int):
 * `mean([]) = NaN` (use `float('NaN')`)
 
 <img src="img/formula_mean.png" />
-
+<!-- 
 ```python
 def mean(numbers):
     if len(numbers) > 0:
         return sum(numbers) / len(numbers)
     return float('NaN')
 ```
-
+ -->
 <br/>
 
 **4) STD**. Calculate the standard deviation of elements in a list.
@@ -316,7 +316,7 @@ def mean(numbers):
 * `std([]) = NaN`
 
 <img src="img/formula_std.png" />
-
+<!-- 
 ```python
 from math import sqrt
 
@@ -327,7 +327,7 @@ def std_dev(numbers):
         std = sqrt(var)
         return std
     return float('NaN')
-```
+``` -->
 
 <br/>
 
@@ -337,7 +337,7 @@ def std_dev(numbers):
 * `rmse([1, 2, 3], [3, 2, 1]) = 1.63`
 
 <img src="img/formula_rmse.png" />
-
+<!-- 
 ```python
 import math
 
@@ -346,14 +346,14 @@ def rmse(y_true, y_pred):
     squares = sum((x - y)**2 for x, y in zip(y_true, y_pred))
     return math.sqrt(squares / len(y_true))
 ```
-
+ -->
 <br/>
 
 **6) Remove duplicates**. Remove duplicates in list. The list is not sorted and the order of elements from the original list should be preserved.
 
 * `[1, 2, 3, 1]` ⇒ `[1, 2, 3]`
 * `[1, 3, 2, 1, 5, 3, 5, 1, 4]` ⇒ `[1, 3, 2, 5, 4]`
-
+<!-- 
 ```python
 def remove_duplicates(lst):
     new_list = []
@@ -375,7 +375,7 @@ def remove_duplicates2(lst):
             new_list.append(elem)
     return new_list
 ```
-
+ -->
 <br/>
 
 **7) Count**. Count how many times each element in a list occurs.
@@ -386,28 +386,30 @@ def remove_duplicates2(lst):
 * 3: 2 times
 * 4: 1 time
 * 5: 2 times
-
+<!-- 
 ```python
 numbers = [1, 3, 2, 1, 5, 3, 5, 1, 4]
 counter = dict()
 for elem in numbers:
     counter[elem] = counter.get(elem, 0) + 1
-```
+``` -->
 or
+Hint : Counter
+<!-- 
 ```python
 from collections import Counter
 
 numbers = [1, 3, 2, 1, 5, 3, 5, 1, 4]
 counter = Counter(numbers)
 ```
-
+ -->
 <br/>
 
 **8) Palindrome**. Is string a palindrome? A palindrome is a word which reads the same backward as forwards.
 
 * “ololo” ⇒ Yes
 * “cafe” ⇒ No
-
+<!-- 
 ```python
 def is_palindrome(s):
     return s == s[::-1]
@@ -419,14 +421,14 @@ def is_palindrome(s):
         if s[i] != s[-i - 1]:
             return False
     return True
-```
+``` -->
 
 <br/>
 
 **9) Counter**. We have a list with identifiers of form “id-SITE”. Calculate how many ids we have per site.
 
 <img src="img/counter_1.png" />
-
+<!-- 
 ```python
 def counter(lst):
     ans = {}
@@ -435,27 +437,27 @@ def counter(lst):
         ans[site] = ans.get(site, 0) + 1
     return ans
 ```
-
+ -->
 <br/>
 
 **10) Top counter**. We have a list with identifiers of form “id-SITE”. Show the top 3 sites. You can break ties in any way you want.
 
 <img src="img/counter_2_top.png" />
-
+<!-- 
 ```python
 def top_counter(lst):
     site_dict = counter(lst)  # using last problem's solution
     top_keys = sorted(site_dict, reverse=True, key=site_dict.get)[:3]
     return {key: site_dict[key] for key in top_keys}
 ```
-
+ -->
 <br/>
 
 **11) RLE**. Implement RLE (run-length encoding): encode each character by the number of times it appears consecutively.
 
 * `'aaaabbbcca'` ⇒ `[('a', 4), ('b', 3), ('c', 2), ('a', 1)]`
 * (note that there are two groups of 'a')
-
+<!-- 
 ```python
 def rle(s):
     ans, cur, num = [], None, 0
@@ -479,7 +481,7 @@ import itertools
 def rle(s):
     return [(l, len(list(g))) for l, g in itertools.groupby(s)]
 ```
-
+ -->
 <br/>
 
 **12) Jaccard**. Calculate the Jaccard similarity between two sets: the size of intersection divided by the size of union.
@@ -487,12 +489,12 @@ def rle(s):
 * `jaccard({'a', 'b', 'c'}, {'a', 'd'}) = 1 / 4`
 
 <img src="img/formula_jaccard.png" />
-
+<!-- 
 ```python
 def jaccard(a, b):
     return len(a & b) / len(a | b)
 ```
-
+ -->
 <br/>
 
 **13) IDF**. Given a collection of already tokenized texts, calculate the IDF (inverse document frequency) of each token.
@@ -506,7 +508,7 @@ Where:
 * t is the token,
 * n(t) is the number of documents that t occurs in,
 * N is the total number of documents
-
+<!-- 
 ```python
 from math import log10
 
@@ -539,7 +541,7 @@ def idf2(docs):
 
     return idf_coefficients
 ```
-
+ -->
 <br/>
 
 **14) PMI**. Given a collection of already tokenized texts, find the PMI (pointwise mutual information) of each pair of tokens. Return top 10 pairs according to PMI.
@@ -572,7 +574,7 @@ Answer here
 * `[3, 4, 6], 6` ⇒ `False`
 
 Brute force, O(n<sup>2</sup>):
-
+<!-- 
 ```python
 def two_sum(numbers, target):
     n = len(numbers)
@@ -584,9 +586,9 @@ def two_sum(numbers, target):
 
     return False
 ```
-
+ -->
 Linear, O(n):
-
+<!-- 
 ```python
 def two_sum(numbers, target):
     index = {num: i for (i, num) in enumerate(numbers)}
@@ -603,9 +605,10 @@ def two_sum(numbers, target):
                 return True
 
     return False
-```
+``` -->
 
 Using itertools.combinations
+<!-- 
 ```python
 from itertools import combinations
 
@@ -615,7 +618,7 @@ def two_sum(numbers, target):
             return True
     return False
 ```
-
+ -->
 
 <br/>
 
@@ -625,7 +628,7 @@ def two_sum(numbers, target):
 * F(1) = 1
 * F(n) = F(n-1) + F(n-2)
 * The sequence is: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
-
+<!-- 
 ```python
 def fibonacci1(n):
     '''naive, complexity = O(2 ** n)'''
@@ -665,9 +668,9 @@ def fibonacci3(n):
     ans = mx_mul(pow([[1, 1], [1, 0]], n), [[1], [0]])[1][0]
     return ans
 ```
-
+ -->
 Memoization with a dictionary
-
+<!-- 
 ```python
 memo = {0: 0, 1: 1}
 
@@ -676,10 +679,10 @@ def fibonacci4(n):
     if n not in memo:
         memo[n] = fibonacci4(n-1) + fibonacci4(n-2)
     return memo[n]
-```
+``` -->
 
 Memoization with `lru_cache`
-
+<!-- 
 ```python
 from functools import lru_cache
 
@@ -703,7 +706,7 @@ def fibonacci5(n):
         return dic[n]
     return helper(n-1, dic)
 ```
-
+ -->
 
 
 <br/>
@@ -712,14 +715,14 @@ def fibonacci5(n):
 
 * 6, 6 ⇒ [7]
 * 2, 4 ⇒ [3, 4, 5]
-
+<!-- 
 ```python
 def most_frequent_outcome(d1, d2):
     len_ans = abs(d1 - d2) + 1
     mi = min(d1, d2)
     ans = [mi + i for i in range(1, len_ans + 1)]
     return ans
-```
+``` -->
 
 <br/>
 
@@ -727,7 +730,7 @@ def most_frequent_outcome(d1, d2):
 
 * The definition of a list node: `Node(value, next)`
 * Example: `a -> b -> c` ⇒ `c -> b -> a`
-
+<!-- 
 ```python
 def reverse_ll(head):
     if head.next is not None:
@@ -736,7 +739,7 @@ def reverse_ll(head):
         while point is not None:
             point.next, point, last = last, point.next, point
 ```
-
+ -->
 <br/>
 
 **5) Flip a binary tree**. Write a function for rotating a binary tree.
@@ -744,14 +747,14 @@ def reverse_ll(head):
 * The definition of a tree node: `Node(value, left, right)`
 
 <img src="img/flip_binary_tree.png" />
-
+<!-- 
 ```python
 def flip_bt(head):
     if head is not None:
         head.left, head.right = head.right, head.left
         flip_bt(head.left)
         flip_bt(head.right)
-```
+``` -->
 
 <br/>
 
@@ -759,7 +762,7 @@ def flip_bt(head):
 
 * `[1, 4, 6, 10], 4` ⇒ `1`
 * `[1, 4, 6, 10], 3` ⇒ `-1`
-
+<!-- 
 ```python
 def binary_search(lst, num):
     left, right = -1, len(lst)
@@ -774,13 +777,13 @@ def binary_search(lst, num):
     else:
         return right
 ```
-
+ -->
 <br/>
 
 **7) Deduplication**. Remove duplicates from a sorted array.
 
 * `[1, 1, 1, 2, 3, 4, 4, 4, 5, 6, 6]` ⇒ `[1, 2, 3, 4, 5, 6]`
-
+<!-- 
 ```python
 def deduplication1(lst):
     '''manual'''
@@ -796,13 +799,13 @@ def deduplication2(lst):
     # order is not guaranteed unless call sorted(list(set(lst))) to sort again
     return list(set(lst))
 ```
-
+ -->
 <br/>
 
 **8) Intersection**. Return the intersection of two sorted arrays.
 
 * `[1, 2, 4, 6, 10], [2, 4, 5, 7, 10]` ⇒ `[2, 4, 10]`
-
+<!-- 
 ```python
 def intersection1(lst1, lst2):
     '''reserves duplicates'''
@@ -823,13 +826,13 @@ def intersection2(lst1, lst2):
     # order is not guaranteed unless call sorted(...) to sort again
     return list(set(lst1) & set(lst2))
 ```
-
+ -->
 <br/>
 
 **9) Union**. Return the union of two sorted arrays.
 
 * `[1, 2, 4, 6, 10], [2, 4, 5, 7, 10]` ⇒ `[1, 2, 4, 5, 6, 7, 10]`
-
+<!-- 
 ```python
 def union1(lst1, lst2):
     '''reserves duplicates'''
@@ -851,7 +854,7 @@ def union2(lst1, lst2):
     '''removes duplicates'''
     # order is not guaranteed unless call sorted(...) to sort again
     return list(set(lst1) | set(lst2))
-```
+``` -->
 
 <br/>
 
@@ -864,7 +867,7 @@ Implement the “+” operation for this representation
 
 * `[1, 1] + [1]` ⇒ `[1, 2]`
 * `[9, 9] + [2]` ⇒ `[1, 0, 1]`
-
+<!-- 
 ```python
 def addition(lst1, lst2):
     def list_to_int(lst):
@@ -893,7 +896,7 @@ def addition2(lst1, lst2):
     ans = lst + [remainder]  # add the remainder as last digit
     return ans
 ```
-
+ -->
 <br/>
 
 **11) Sort by custom alphabet**. You’re given a list of words and an alphabet (e.g. a permutation of Latin alphabet). You need to use this alphabet to order words in the list.
@@ -906,12 +909,12 @@ Example:
 Output:
 
 * `['cat', 'green', 'home', 'network', 'egg', 'oval']`
-
+<!-- 
 ```python
 def sort_by_custom_alphabet(dictionary, words):
     words = sorted(words, key = lambda word: [dictionary.index(c) for c in word])
     return words
-```
+``` -->
 
 <br/>
 
@@ -920,7 +923,7 @@ def sort_by_custom_alphabet(dictionary, words):
 * Greater than or equal to the numbers on the left
 * Less than or equal to the number on the right
 * The definition of a tree node: `Node(value, left, right)`
-
+<!-- 
 ```python
 def check_is_bst(head, min_val=None, max_val=None):
     """Check whether binary tree is binary search tree
@@ -953,13 +956,13 @@ def check_is_bst(head, min_val=None, max_val=None):
 
     return check_val and check_left and check_right
 ```
-
+ -->
 <br/>
 
 
 **13) Maximum Sum Contiguous Subarray**. You are given an array `A` of length `N`, you have to find the largest possible sum of an Subarray, of array `A`.  
 * `[-2, 1, -3, 4, -1, 2, 1, -5, 4]` gives `6` as largest sum (from the subarray `[4, -1, 2, -1]`
-
+<!-- 
 ```python
 from sys import maxsize
 def max_sum_subarr(list1, size):
@@ -985,7 +988,7 @@ for i in range(0,n):
 
 print(max_sum_subarr(list1, len(list1)))
 ```
-
+ -->
 <br/>
 
 **14) Three sum**. Given an array, and a target value, find all possible combinations of three distinct numbers such that the sum of these three distinct numbers is equal to the target value.
@@ -994,7 +997,7 @@ Example:
 
     Input: [12, 3, 1, 2, -6, 5, -8, 6], 0
     Output: [[-8, 2, 6], [-8, 3, 5], [-6, 1, 5]]
-
+<!-- 
 ```python
 def threeSum(array, target):
     array.sort()
@@ -1015,3 +1018,4 @@ def threeSum(array, target):
                 left += 1
     return triplets
 ```
+ -->
