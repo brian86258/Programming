@@ -43,10 +43,10 @@ Suppose we have the following schema with two tables: Ads and Events
 Write SQL queries to extract the following information:
 
 **1)** The number of active ads.
-
+<!-- 
 ```sql
 SELECT count(*) FROM Ads WHERE status = 'active';
-```
+``` -->
 
 <br/>
 
