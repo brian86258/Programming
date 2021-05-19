@@ -1,5 +1,5 @@
 # This folder will organize all DS-related programming files
-##[Useful Sources](https://github.com/alexeygrigorev/data-science-interviews?fbclid=IwAR3L7vS_omchABDcz07WsmpkCJ8vW9gccmhas152rqOuhZlDJiNYTDyixnc)
+## [Solutions](https://github.com/alexeygrigorev/data-science-interviews?fbclid=IwAR3L7vS_omchABDcz07WsmpkCJ8vW9gccmhas152rqOuhZlDJiNYTDyixnc)
 
 ## Following will be some questions 
 Now, let’s start with the actual questions. First, we’ll cover SQL.
