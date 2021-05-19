@@ -133,8 +133,7 @@ FROM Ads AS a
 WHERE e.date >= DATEADD(week, -1, GETDATE())
 GROUP BY a.campaign_id, e.event_type, e.date
 ORDER BY a.campaign_id, e.date DESC, "count" DESC;
-```
- -->
+``` -->
 <br/>
 
 **8)** CTR (click-through rate) for each ad. CTR = number of clicks / number of impressions.
@@ -157,8 +156,7 @@ FROM
   GROUP BY a.ad_id
   ) AS impressions_clicks_table
 ORDER BY impressions_clicks_table.ad_id;
-```
- -->
+``` -->
 <br/>
 
 **9)** CVR (conversion rate) for each ad. CVR = number of conversions / number of clicks.
@@ -181,8 +179,7 @@ FROM
   GROUP BY a.ad_id
   ) AS conversions_clicks_table
 ORDER BY conversions_clicks_table.ad_id;
-```
- -->
+```-->
 <br/>
 
 **10)** CTR and CVR for each ad broken down by day and hour (most recent first).
@@ -263,8 +260,7 @@ for i in range(1, 101):
         print('Buzz')
     else:
         print(i)
-```
- -->
+```-->
 <br/>
 
 **2) Factorial**. Calculate a factorial of a number
@@ -278,8 +274,7 @@ def factorial(n):
     for i in range(2, n + 1):
         result *= i
     return result
-```
- -->
+``` -->
 We can also write this function using recursion:
 <!-- 
 ```python
