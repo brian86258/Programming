@@ -1,5 +1,5 @@
 # Theoretical interview questions
-
+[Top 50 Data Science Interview Questions and Answers for 2021](https://www.simplilearn.com/tutorials/data-science-tutorial/data-science-interview-questions)
 <table>
    <tr>
       <td>⚠️</td>
