@@ -1,0 +1,6 @@
+Serving notebooks from local directory: /mnt/d/Programming/Python
+0 active kernels
+Jupyter Notebook 6.2.0 is running at:
+http://localhost:8888/?token=3c518a2eea48fb329dcff7f21f5d77f5d259b4bdd832ea7d
+ or http://127.0.0.1:8888/?token=3c518a2eea48fb329dcff7f21f5d77f5d259b4bdd832ea7d
+Shutdown this notebook server (y/[n])? 

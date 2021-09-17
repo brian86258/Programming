@@ -1,0 +1,66 @@
+/*
+Write an SQL query to display the records with three or more rows with consecutive id's, 
+and the number of people is greater than or equal to 100 for each.
+
+Return the result table ordered by visit_date in ascending order.
+
++------+------------+-----------+
+| id   | visit_date | people    |
++------+------------+-----------+
+| 1    | 2017-01-01 | 10        |
+| 2    | 2017-01-02 | 109       |
+| 3    | 2017-01-03 | 150       |
+| 4    | 2017-01-04 | 99        |
+| 5    | 2017-01-05 | 145       |
+| 6    | 2017-01-06 | 1455      |
+| 7    | 2017-01-07 | 199       |
+| 8    | 2017-01-09 | 188       |
++------+------------+-----------+
+create table stadium(id int, visit_date date, people int);
+insert into stadium
+values 
+(1,'2017-01-01',10),   
+(2,'2017-01-02',109),  
+(3,'2017-01-03',150),  
+(4,'2017-01-04',99),   
+(5,'2017-01-05',145),  
+(6,'2017-01-06',1455), 
+(7,'2017-01-07',199),  
+(8,'2017-01-09',188);  
+
+Result table:The four rows with ids 5, 6, 7, and 8 have consecutive ids and each of them has >= 100 people attended. 
+Note that row 8 was included even though the visit_date was not the next day after row 7.
+The rows with ids 2 and 3 are not included because we need at least three consecutive ids.
++------+------------+-----------+
+| id   | visit_date | people    |
++------+------------+-----------+
+| 5    | 2017-01-05 | 145       |
+| 6    | 2017-01-06 | 1455      |
+| 7    | 2017-01-07 | 199       |
+| 8    | 2017-01-09 | 188       |
++------+------------+-----------+
+*/
+
+select * from stadium;
+with helper_table
+as(
+	select  *,
+			LAG(people,1)
+			over(order by visit_date ASC)
+			as one_row_before,
+			LAG(people,2)
+			over(order by visit_date ASC)
+			as two_row_before,
+			LEAD(people,1)
+			over(order by visit_date ASC)
+			as one_row_after,
+			LEAD(people,2)
+			over(order by visit_date ASC)
+			as two_row_after	
+	from stadium
+)
+select id, visit_date, people
+from helper_table
+where (one_row_before >= 100 and two_row_before >= 100 and people >= 100) or (one_row_before >= 100 and people >= 100 and one_row_after>= 100)
+	  or (people >= 100 and one_row_after>= 100 and two_row_after>= 100);
+
